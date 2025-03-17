@@ -24,7 +24,27 @@ app.engine('liquid', engine.express());
 app.set('views', './views')
 
 
-console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
+// Route-handler voor de hoofdpagina ('/')
+app.get('/', async function (request, response) {
+  // Haal de data op van de Directus API
+  const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects');
+  const apiResponseJSON = await apiResponse.json();
+
+  // Render de Liquid-template en geef de data mee
+  response.render('index.liquid', { artworks: apiResponseJSON.data });
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
@@ -64,11 +84,12 @@ app.post(…, async function (request, response) {
 
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
-// Lokaal is dit poort 8000; als deze applicatie ergens gehost wordt, waarschijnlijk poort 80
+// Lokaal is dit poort 8000, als dit ergens gehost wordt, is het waarschijnlijk poort 80
 app.set('port', process.env.PORT || 8000)
 
-// Start Express op, gebruik daarbij het zojuist ingestelde poortnummer op
+// Start Express op, haal daarbij het zojuist ingestelde poortnummer op
 app.listen(app.get('port'), function () {
-  // Toon een bericht in de console
-  console.log(`Daarna kun je via http://localhost:${app.get('port')}/ jouw interactieve website bekijken.\n\nThe Web is for Everyone. Maak mooie dingen 🙂`)
+  // Toon een bericht in de console en geef het poortnummer door
+  console.log(`Application started on http://localhost:${app.get('port')}`)
 })
+
