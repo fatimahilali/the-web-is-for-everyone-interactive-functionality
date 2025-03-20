@@ -1,3 +1,8 @@
+/* 
+vorige  project: 
+Auteur: Fatima El Hilali
+*/
+
 
 /* Algemene reset */
 * {
@@ -15,10 +20,10 @@
     }
 
 /*  Dynamisch aantal kolommen op verschillende schermgroottes */
-@media (min-width: 400px) { .art-gallery { column-count: 3; } }
-@media (min-width: 600px){.art-gallery { column-count: 4; } }
-@media (min-width: 800px) { .art-gallery { column-count: 5; } }
-@media (min-width: 1200px) { .art-gallery { column-count: 6; } }
+    @media (min-width: 400px) { .art-gallery { column-count: 3; } }
+    @media (min-width: 600px){.art-gallery { column-count: 4; } }
+    @media (min-width: 800px) { .art-gallery { column-count: 5; } }
+    @media (min-width: 1200px) { .art-gallery { column-count: 6; } }
 
 
 /* Galerij-items */
@@ -66,7 +71,7 @@
 @media (min-width: 1024px) {
     .search-section {
         margin-bottom: 3rem;
-        padding-top: 3rem;
+        padding-top: 8rem;
     }
 }
 
@@ -214,6 +219,29 @@
     color: var(--text-light);
 }
 
+
+/*extra  Hover-effect per knop */
+.filter-nav li:nth-child(1) a:hover {
+    background-color: #78AAFA; 
+    color: white;
+}
+
+.filter-nav li:nth-child(2) a:hover {
+    background-color: #EC3C8A ; 
+    color: white;
+}
+
+.filter-nav li:nth-child(3) a:hover {
+    background-color: #FAFF1D; 
+    color: rgb(255, 253, 253) ;
+}
+
+
+.filter-nav li:nth-child(5) a:hover {
+    background-color: #FFC200 ;
+    color: white;
+}
+
 /* bron:web dev simplified */
 .filter-nav a:hover::before {
     top: -1.875rem;
@@ -227,7 +255,7 @@
 }
 
 
-/*  TOEGANKELIJKHEID  */
+/* TOEGANKELIJKHEID  */
 .visually-hidden {
     position: absolute;
     width: 0.0625rem;
@@ -239,3 +267,68 @@
     white-space: nowrap;
     border: 0;
 }
+
+/* Algemeen overlay-stijl */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3.125rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.4);
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+    transform: translateY(0.625rem); 
+    border-radius: 0 0 0.625rem 0.625rem;
+}
+
+/* Hover effect: overlay verschijnt subtiel onderaan */
+.art-figure:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stijl van de knoppen */
+.like-btn, .admin-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem; 
+    height: 2.5rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover effect op knoppen */
+.like-btn:hover, .admin-btn:hover {
+    transform: scale(1.1);
+}
+
+/* SVG icons zonder kleur en zonder achtergrond */
+.like-btn svg, .admin-btn svg {
+    width: 1.375rem; 
+    height: 1.375rem; 
+    fill: var(--background-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Hover animatie op SVG icons */
+.like-btn:hover svg, .admin-btn:hover svg {
+    transform: scale(1.05);
+}
+
+/* Geen blur-effect op de afbeelding */
+.art-figure .art-image {
+    transition: transform 0.2s ease-in-out;
+}
+
+.art-figure:hover .art-image {
+    transform: scale(1.02);
+}
+

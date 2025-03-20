@@ -1,3 +1,15 @@
+    // Bronnen:
+    // developer.mozilla.org
+    // https://stackoverflow.com/
+    // https://codingnomads.com/handle-multiple-fetch-requests-javascript-promise-all
+    // vorige jaar backend project 
+    // squad page team 
+    // debuggin: Chatgpt
+    // Dion,Justus
+    // https://docs.directus.io/reference/query.html  
+
+
+
 // Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
 import express from 'express'
@@ -24,6 +36,7 @@ app.engine('liquid', engine.express());
 app.set('views', './views')
 
 
+
 // Route-handler voor de hoofdpagina ('/')
 app.get('/', async function (request, response) {
   // Haal de data op van de Directus API
@@ -36,55 +49,69 @@ app.get('/', async function (request, response) {
 
 
 
+// Route voor het weergeven van het admin-dashboard
+app.get("/admin-dashboard", async (req, res) => {
+  try {
+    //  Haal het aantal likes per kunstwerk op met een API-aanvraag
+    const likesRes = await fetch(
+      "https://fdnd-agency.directus.app/items/fabrique_messages?aggregate[count]=id&groupBy=for"
+    );
+    const likesData = await likesRes.json(); // Zet de response om naar JSON
 
-
-
-
-
-
-
-
-
-
-/*
-// Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
-app.get(…, async function (request, response) {
-  
-  // Zie https://expressjs.com/en/5x/api.html#res.render over response.render()
-  response.render(…)
-})
-*/
-
-/*
-// Zie https://expressjs.com/en/5x/api.html#app.post.method over app.post()
-app.post(…, async function (request, response) {
-
-  // In request.body zitten alle formuliervelden die een `name` attribuut hebben in je HTML
-  console.log(request.body)
-
-  // Via een fetch() naar Directus vullen we nieuwe gegevens in
-
-  // Zie https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch over fetch()
-  // Zie https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify over JSON.stringify()
-  // Zie https://docs.directus.io/reference/items.html#create-an-item over het toevoegen van gegevens in Directus
-  // Zie https://docs.directus.io/reference/items.html#update-an-item over het veranderen van gegevens in Directus
-  await fetch(…, {
-    method: …,
-    body: JSON.stringify(…),
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8'
+    //  Controleer of er data aanwezig is
+    if (!likesData.data) {
+      // Als er geen data is, render de pagina met een lege lijst van kunstwerken
+      return res.render("admin-dashboard.liquid", { liked_artworks: [] });
     }
-  });
 
-  // Redirect de gebruiker daarna naar een logische volgende stap
-  // Zie https://expressjs.com/en/5x/api.html#res.redirect over response.redirect()
-  response.redirect(303, …)
-})
-*/
+  
+
+    // Haal de kunstwerken op en voeg het aantal likes toe
+    const liked_artworks = await Promise.all(
+      likesData.data.map(async ({ for: artworkId, count }) => {
+        // Haal de gegevens van het specifieke kunstwerk op
+        const artworkRes = await fetch(
+          `https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}`
+        );
+        const artworkData = await artworkRes.json();
+
+        // Controleer of er data is en voeg het aantal likes toe
+        return artworkData.data ? { ...artworkData.data, likes: count.id || 0 } : null;
+      })
+    );
+
+    // Render de admin-dashboard pagina met de kunstwerken en hun likes
+    res.render("admin-dashboard.liquid", {
+      liked_artworks: liked_artworks.filter(Boolean), // Verwijder null-waardes
+    });
+  } catch {
+    //  Foutafhandeling - geef een foutmelding als er iets misgaat
+    res.status(500).send("Er is een fout opgetreden bij het laden van de pagina.");
+  }
+});
+
+
+
+// Route voor het liken van een kunstwerk
+app.post("/like", async (req, res) => {
+  // Stuur een POST-verzoek naar de Directus API om de like op te slaan
+    let postresult = await fetch("https://fdnd-agency.directus.app/items/fabrique_messages/", {
+      method: "POST",  // Nieuw bericht toevoegen
+      headers: { "Content-Type": "application/json" }, // De data wordt als JSON verstuurd
+      body: JSON.stringify({ 
+          text: "like",          // De inhoud van het bericht is "like"
+          for: req.body.artworkId, // ID van het gelikete kunstwerk
+          from: "1"                 // Fake user-ID omdat er geen inlog is
+      }),
+  });
+  //  Stuur de gebruiker terug naar de vorige pagina na het liken
+  res.redirect('/admin-dashboard');
+});
+
+
 
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
-// Lokaal is dit poort 8000, als dit ergens gehost wordt, is het waarschijnlijk poort 80
 app.set('port', process.env.PORT || 8000)
 
 // Start Express op, haal daarbij het zojuist ingestelde poortnummer op
@@ -92,4 +119,3 @@ app.listen(app.get('port'), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
-
