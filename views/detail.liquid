@@ -1,0 +1,147 @@
+<!-- bronnen:
+https://stackoverflow.com/questions/59196117/toggle-language-between-divs
+https://shopify.github.io/liquid/filters/escape/
+https://shopify.github.io/liquid/filters/default/?utm_source=chatgpt.com
+https://stackoverflow.com/questions/41746962/change-language-url-with-select-option
+https://liquidjs.com/filters/newline_to_br.html
+https://stackoverflow.com/questions/24875414/addeventlistener-change-and-option-selection
+ChatGPT: Voor het bevestigen van mijn begrip van de bronnen.-->
+
+
+
+<!-- Inladen van de header (navbar) via Liquid partials -->
+{% render 'partials/header.liquid' %}
+
+
+<!--  Inladen van de basis CSS en metadata -->
+{% render 'partials/head.liquid' %}
+
+<!--  Detailpagina voor een specifiek artwork -->
+  <main class="detail-artwork"> <div class="container">
+
+    <!--  Navigatie bovenaan met terugknop en taalkeuze -->
+    <nav aria-label="Pagina navigatie">
+      <!-- Terug naar homepage -->
+      <a href="/" title="Terug naar de homepagina">
+        <button
+          type="button"
+          class="back-button"
+          aria-label="Terug naar homepagina">
+          ← BACK
+        </button>
+      </a>
+
+      <!-- Taalkeuze dropdown -->
+      <div class="language-switch">
+        <label for="language-select" class="visually-hidden">Taalkeuze</label>
+        <select id="language-select" aria-label="Kies een taal">
+          <option value="en">🇬🇧 English</option>
+          <option value="ar">🇸🇦 العربية</option>
+        </select>
+      </div>
+    </nav>
+
+    <!--  Afbeelding van het artwork -->
+    <article class="object-detail" aria-label="Afbeelding van het object">
+      <img
+        class="detail-artwork-image"
+        src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}"
+        alt="Afbeelding van het artwork: {{ artwork.title }}">
+    </article>
+
+    <!--  Info-sectie met beschrijving  -->
+    <div class="info-container">
+      <section class="info-left">
+        <header>
+          <!--  Titel Engels (zichtbaar standaard) -->
+          <h1 id="artwork-title-en" class="artwork-title">
+            Portraits Sketched <br> from the Life Since<br>
+            the Year
+            <span class="highlight-year">1793</span>
+          </h1>
+
+          <!--  Titel Arabisch (alleen zichtbaar bij selectie) -->
+
+          <h1
+            id="artwork-title-ar"
+            class="artwork-title hidden"
+            dir="rtl">
+
+            {{ artwork.titleAR | escape }}
+          </h1>
+
+          <!--  Museuminformatie -->
+          <div class="museum-header">
+            <img
+              src="/assets/museum-icon.png"
+              alt="Logo van Museum of Islamic Art"
+              width="40"
+              height="40">
+            <p>Museum of Islamic Art</p>
+          </div>
+        </header>
+
+        <!--  Engelse beschrijving, met fallback indien leeg in backend -->
+        <p class="dropcap description en" id="artwork-description-en">
+          {{ artwork.summary | default: "Bowl with monochrome luster decoration. The design shows an antelope confronting a long-tailed bird on a background of small chevrons. The kufic inscription on the body of the antelope says: “blessing to its owner.“ Above the antelope, the artist inscribed his name: “work of ‘Ali.“ In the middle of the glazed foot, the word Baraka (blessing) is rendered in kufic script. The initially abstract design style of the Abbasid luster wares developed in the 10th century and particularly in Iraq into a new decorative approach with animal designs. These are usually set on a stippled background. By this time, potters had abandoned polychrome painting in favor of monochrome luster. Here, a single animal or a symmetrical pair was at the center of the design. The change of style may reflect the taste of the new elite formed when the Buyids arrived in Iraq." | escape | newline_to_br }}
+        </p>
+
+        <!--  Arabische beschrijving, met fallback als tekst ontbreekt -->
+
+        <p
+          class="dropcap description ar hidden"
+          id="artwork-description-ar"
+          dir="rtl">
+
+          {{ artwork.summaryAR | default: "لا يوجد وصف باللغة العربية." | escape | newline_to_br }}
+        </p>
+      </section>
+
+      <!--   beschrijving zoals titel en slug -->
+      <aside class="info-right" aria-labelledby="artwork-metadata">
+        <section class="artwork-details">
+          <h2 id="artwork-metadata" class="visually-hidden">Details over het werk</h2>
+          <p>
+            <strong>Titel:</strong>
+            {{ artwork.title }}</p>
+          {% if artwork.slug %}
+            <p>
+              <strong>Slug:</strong>
+              {{ artwork.slug }}</p>
+          {% endif %}
+        </section>
+      </aside>
+    </div>
+  </div>
+</main>
+
+
+<script>
+  // Wissel tussen Engels en Arabisch op de detailpagina
+  const languageSelect = document.getElementById("language-select");
+
+  if (languageSelect) {
+    languageSelect.addEventListener("change", (e) => {
+      const isArabic = e.target.value === "ar";
+
+// Toon of verberg elementen op basis van taal
+      document.getElementById("artwork-description-en").classList.toggle("hidden", isArabic);
+      document.getElementById("artwork-description-ar").classList.toggle("hidden", ! isArabic);
+      document.getElementById("artwork-title-en").classList.toggle("hidden", isArabic);
+      document.getElementById("artwork-title-ar").classList.toggle("hidden", ! isArabic);
+
+// Subtiele animatie voor Arabische content
+      if (isArabic) {
+        gsap.from([
+          "#artwork-title-ar", "#artwork-description-ar"
+        ], {
+          opacity: 0,
+          x: 20,
+          duration: 1,
+          ease: "power1.out",
+          stagger: 0.15
+        });
+      }
+    });
+  }
+</script>

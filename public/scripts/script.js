@@ -1,6 +1,6 @@
 /**
  * @author Fatima
- * @description Oneindig scrollen in een galerij door afbeeldingen te dupliceren.
+ * @description Oneindig scrollen in een galerij door afbeeldingen te dupliceren en taalwissel tussen Engels en Arabisch op de detailpagina..
  * @file script.js
  * @sprint 9
  */
@@ -17,3 +17,9 @@ window.addEventListener("scroll", function() {
       voegAfbeeldingenToe(); // Voeg nieuwe afbeeldingen toe
   }
 });
+
+
+
+
+
+

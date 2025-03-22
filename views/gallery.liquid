@@ -48,9 +48,11 @@
       <li class="art-item">
         <figure class="art-figure">
           <!-- Afbeelding van het kunstwerk -->
+          <a href="/detail/{{ artwork.id }}">
           <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" 
                alt="{{ artwork.title }}" 
                class="art-image">
+        </a>
           
           <!-- Overlay met like- en admin-knoppen -->
           <figcaption class="overlay">

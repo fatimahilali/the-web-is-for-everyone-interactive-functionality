@@ -111,6 +111,24 @@ app.post("/like", async (req, res) => {
 
 
 
+//  Detailpagina route voor  kunstwerk
+app.get('/detail/:id', async function (request, response) {
+    //  Haal het ID op uit de URL (bijv. /detail/42 → id = 42)
+  const artworkId = request.params.id;
+
+  //  Vraag gegevens op van het kunstwerk via de Directus API
+  // Alleen de velden die er staan  worden opgehaald 
+  const apiResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_art_objects/${artworkId}?fields=title,titleAR,image,slug,summary,summaryAR`);
+  const artworkData = await apiResponse.json();
+  
+  //  Render de detailpagina en geef het object door aan de template
+  response.render('detail.liquid', {
+    artwork: artworkData.data //in de template heet dit dus "artwork"
+  });
+});
+
+
+
 // Stel het poortnummer in waar Express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000)
 
@@ -119,3 +137,6 @@ app.listen(app.get('port'), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
+
+
+
