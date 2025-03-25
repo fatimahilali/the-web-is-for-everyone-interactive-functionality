@@ -406,10 +406,7 @@
   }
   
 
-
-
-
-  /*  Verbergt elementen visueel en uit layout */
+  /* Verbergt elementen visueel en uit layout */
 .hidden {
   display: none;
 }
@@ -423,3 +420,4 @@
   white-space: nowrap;
   border: 0;
 }
+

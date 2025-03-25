@@ -1,5 +1,4 @@
 
-
 <!-- Zoeksectie -->
 <section class="search-section">
   <!-- Verborgen H1  voor SEO en toegankelijkheid -->
@@ -13,7 +12,7 @@
       <input type="text" id="search" name="search" class="input" placeholder="Search the collections...">
     
       <!-- Zoekknop met icoon en toegankelijkheidslabel -->
-      <button type="submit" class="icon" aria-label="Zoeken">
+      <button type="submit" class="icon">
         <svg width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
           <title>Zoek icoon</title>
           <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -27,7 +26,7 @@
 
 
   <!-- Navigatie voor filters -->
-  <nav class="filter-nav" aria-label="Filter navigatie">
+  <nav class="filter-nav">
     <ul>
       <li><a href="#">All Objects</a></li>
       <li><a href="#">Paintings</a></li>
@@ -37,6 +36,7 @@
     </ul>
   </nav>
 </section>
+
 
 
 
@@ -59,7 +59,7 @@
             <!-- Like Button met formulier -->
             <form action="/like" method="POST">
               <input type="hidden" name="artworkId" value="{{ artwork.id }}">
-              <button type="submit" class="like-btn" aria-label="Like afbeelding">
+              <button type="submit" class="like-btn">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="#E63946">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M15.9 4.5C15.9 3 14.418 2 13.26 2c-.806 0-.869.612-.993 1.82-.055.53-.121 1.174-.267 1.93-.386 2.002-1.72 4.56-2.996 5.325V17C9 19.25 9.75 20 13 20h3.773c2.176 0 2.703-1.433 2.899-1.964l.013-.036c.114-.306.358-.547.638-.82.31-.306.664-.653.927-1.18.311-.623.27-1.177.233-1.67-.023-.299-.044-.575.017-.83.064-.27.146-.475.225-.671.143-.356.275-.686.275-1.329 0-1.5-.748-2.498-2.315-2.498H15.5S15.9 6 15.9 4.5zM5.5 10A1.5 1.5 0 0 0 4 11.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 5.5 10z"/>
                 </svg>
@@ -68,7 +68,7 @@
 
 
             <!-- Admin Button met SVG -->
-            <a href="/admin-dashboard" class="admin-btn" aria-label="Ga naar adminpagina">
+            <a href="/admin-dashboard" class="admin-btn">
               <svg width="30" height="30" viewBox="0 0 512 512" fill="#1E3C72" xmlns="http://www.w3.org/2000/svg">
                 <path d="M448,362.7l-117.3-21.3C320,320,320,310.7,320,298.7c10.7-10.7,32-21.3,32-32c10.7-32,10.7-53.3,10.7-53.3
                 c5.5-8,21.3-21.3,21.3-42.7s-21.3-42.7-21.3-53.3C362.7,32,319.2,0,256,0c-60.5,0-106.7,32-106.7,117.3c0,10.7-21.3,32-21.3,53.3

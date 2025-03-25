@@ -115,12 +115,12 @@ Charlotte Dann - https://charlottedann.com/
 @keyframes spin-glow {
   0% {
     transform: rotate(0deg) scale(1);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.15);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.318);
     opacity: 1;
   }
   50% {
     transform: rotate(5deg) scale(1.05);
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.501);
     opacity: 0.9;
   }
   100% {
