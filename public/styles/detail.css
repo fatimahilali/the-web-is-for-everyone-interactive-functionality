@@ -1,70 +1,81 @@
-
 /* 
    Container voor de hele pagina - mobiel eerst
 */
 .container {
-    width: 100%;
-    max-width: 69.75rem;
-    padding: 3%;
-    margin: 3% auto;
-    margin-top: 20%;
-    background: #fcfaf5;
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+  width: 100%;
+  display: block; /* Gebruik block voor oudere browsers die geen flexbox ondersteunen */
+  max-width: 69.75rem;
+  padding: 3%;
+  margin: 3% auto;
+  margin-top: 20vh;
+  background: #fcfaf5;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+  border: 1px solid #d9cbb6;
+  border-left: 0.1875rem solid #7a654f;
+}
+
+/* Flexbox voor browsers die het wel ondersteunen */
+@supports (display: flex) {
+  .container {
     display: flex;
+    flex-direction: column; 
     align-items: flex-start;
     gap: 3%;
-    border: 1px solid #d9cbb6;
-    border-left: 0.1875rem solid #7a654f;
-    flex-direction: column;
+
   }
-  
-  /* Desktop versie van .container */
-  @media (min-width: 1024px) {
-    .container {
+}
+
+/* Desktop versie van .container */
+@media (min-width: 1024px) {
+  .container {
       width: 90%;
       padding: 2.5%;
       flex-direction: row;
       margin-top: 17%;
-
-    }
   }
+}
+/* 
+   Object detail container (afbeelding)
+*/
+.object-detail {
+  flex: 1;
+  display: block; /* Gebruik block-weergave voor oudere browsers die geen flexbox ondersteunen */
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 31.25rem; 
+  height: 37.5rem;
+  border-radius: 0.375rem;
+  margin: 0 auto;
+  background-color: #f5f4f0;
+  margin-top: 4%;
+}
 
-  
-  
-  /* 
-     Object detail container (afbeelding)
-  */
+/* Flexbox voor browsers die het wel ondersteunen */
+@supports (display: flex) {
   .object-detail {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 31.25rem; 
-    height: 37.5rem; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.375rem;
-    margin: 0 auto;
-    background-color: #f5f4f0;
-    margin-top: 4%;
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
   }
-  
-  /* 
-     Afbeelding styling
-  */
-  .detail-artwork-image {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
-    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
-  }
-  
-  
+}
+
+
+ /* 
+   Afbeelding styling
+*/
+.detail-artwork-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.2);
+}
+
+
+
   /* Hover effect */
   .detail-artwork-image:hover {
     transform: scale(1.05);
@@ -223,42 +234,50 @@
       font-size: 0.9rem;
     }
   }
+
   
-  /* 
-     Titel en slug onder de afbeelding - mobiel eerst
-  */
+/* 
+   Titel en slug onder de afbeelding - mobiel eerst
+*/
+.artwork-details {
+  display: block; /* fallback */
+  border-top: 1px solid var(--accent-color);
+  padding: 0.75rem;
+  font-size: 0.9375rem; 
+  color: #4a3d32;
+  font-weight: bold;
+  background: #f8f5f0;
+  border-radius: 0.5rem;
+  margin-top: 0.625rem;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+@supports (display: flex) {
   .artwork-details {
     display: flex;
     flex-direction: column; /* Op mobiel: onder elkaar */
     justify-content: center;
     align-items: center;
-    border-top: 1px solid var(--accent-color);
-    padding: 0.75rem;
-    font-size: 0.9375rem; 
-    color: #4a3d32;
-    font-weight: bold;
-    background: #f8f5f0;
-    border-radius: 0.5rem;
-    margin-top: 0.625rem;
-    text-align: center;
-    width: 100%;
-    border-bottom: 1px solid var(--accent-color);
   }
-  
-  /* Desktop: Zet Titel links en Slug rechts */
-  @media (min-width: 1024px) {
-    .artwork-details {
-      flex-direction: row; /* Desktop: naast elkaar */
-      justify-content: space-between; /* Houdt Titel links en Slug rechts */
-      align-items: center;
-      font-size: 1rem;
-      text-align: left;
-      padding: 1rem 1.5rem; /* Extra witruimte */
-      max-width: 600px; 
-      margin: 1rem auto;
-      white-space: nowrap; /* Zorgt ervoor dat de tekst niet afbreekt */
-    }
+}
+
+
+/* Desktop: Zet Titel links en Slug rechts */
+@media (min-width: 1024px) {
+  .artwork-details {
+    flex-direction: row; /* Desktop: naast elkaar */
+    justify-content: space-between; /* Houdt Titel links en Slug rechts */
+    align-items: center;
+    font-size: 1rem;
+    text-align: left;
+    padding: 1rem 1.5rem; /* Extra witruimte */
+    max-width: 600px; 
+    margin: 1rem auto;
+    white-space: nowrap; /* Zorgt ervoor dat de tekst niet afbreekt */
   }
+}
   
   /* Paragraafstijl mobile  */
   .artwork-details p {
@@ -295,6 +314,7 @@
   
   .back-button {
     position: absolute;
+    display: block; /* fallback */
     top: 17%;            
     left: -2%;          
     background: rgba(0, 0, 0, 0.7);
@@ -305,6 +325,16 @@
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
+  }
+  
+
+  @supports (display: flex) {
+    .back-button {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
   
   /* 
@@ -348,12 +378,16 @@
   }
   
 
-  /*  Alleen bij RTL-taal (dus bij Arabisch): float rechts */
+ /* Alleen bij RTL-taal (dus bij Arabisch): float rechts */
 .dropcap:dir(rtl)::first-letter {
   float: right;
   margin-right: 0;
   margin-left: 0.5rem;
 }
+
+
+
+
   /* 
      Taalwisselaar container - mobiel eerst (kleiner gemaakt)
   */

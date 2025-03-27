@@ -155,6 +155,21 @@ Charlotte Dann - https://charlottedann.com/
   }
 }
 
+
+/* Fallback voor oudere browsers zonder flexbox ondersteuning */
+
+  .user-profile{
+    display: block; /* Zorg ervoor dat ze block worden in oude browsers die geen flex ondersteunen */
+  }
+
+/* Flexbox voor browsers die het wel ondersteunen */
+@supports (display: flex) {
+  .user-profile  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 /* Fade-out effect zodat de sectie blendt */
 .user-profile::after {
   content: "";
@@ -191,6 +206,20 @@ Charlotte Dann - https://charlottedann.com/
 
   }
 }
+
+
+/* Fallback voor oudere browsers zonder object-fit ondersteuning */
+.profile-image {
+  object-fit: contain; /* Fallback: gebruik contain voor oudere browsers */
+}
+
+/* Gebruik object-fit cover voor browsers die het wel ondersteunen */
+@supports (object-fit: cover) {
+  .profile-image {
+    object-fit: cover; /* object-fit is cover voor moderne browsers */
+  }
+}
+
 
 /* Extra glow effect bij de profielfoto */
 .profile-image {
@@ -302,13 +331,25 @@ Charlotte Dann - https://charlottedann.com/
 
 /* mobile versie  */
   .artwork-grid {
-    display: flex; 
+    display: block; /* Gebruik block voor oudere browsers */
+}
+
+
+
+/* Flexbox voor browsers die flexbox ondersteunen */
+@supports (display: flex) {
+  .artwork-grid {
+    display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     max-width: 100%;
     margin: 0 auto;
-    gap: 1.5rem; 
+    gap: 1.5rem;
+  }
 }
+
+
+
 
 /* desktop versie  */
 @media (min-width: 64rem) {
@@ -320,6 +361,8 @@ Charlotte Dann - https://charlottedann.com/
     margin: 2rem auto;
   }
 }
+
+
 
 /* mobile Artwork Card */
   .artwork-card {
@@ -466,6 +509,10 @@ Charlotte Dann - https://charlottedann.com/
   gap: 0.3rem; 
   padding: 0.3rem 0;
 }
+
+
+
+
 
 /* Desktop aanpassingen */
 @media (min-width: 64rem) {

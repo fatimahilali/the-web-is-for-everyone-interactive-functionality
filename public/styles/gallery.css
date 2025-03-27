@@ -26,6 +26,45 @@ Auteur: Fatima El Hilali
     @media (min-width: 1200px) { .art-gallery { column-count: 6; } }
 
 
+
+
+ /* Fallback voor oudere browsers die geen column-count ondersteunen */
+  .art-gallery {
+    display: block; /* Gebruik een enkele kolom voor oudere browsers */
+  }
+
+
+
+/* Gebruik @supports om column-count alleen toe te passen als het wordt ondersteund */
+@supports (column-count: 3) {
+    /* Dynamisch aantal kolommen op verschillende schermgroottes voor moderne browsers */
+    @media (min-width: 400px) {
+      .art-gallery {
+        column-count: 3;
+      }
+    }
+  
+
+    @media (min-width: 600px) {
+      .art-gallery {
+        column-count: 4;
+      }
+    }
+  
+    @media (min-width: 800px) {
+      .art-gallery {
+        column-count: 5;
+      }
+    }
+  
+    @media (min-width: 1200px) {
+      .art-gallery {
+        column-count: 6;
+      }
+    }
+  }
+  
+
 /* Galerij-items */
 .art-item {
     display: inline-block;
@@ -76,6 +115,7 @@ Auteur: Fatima El Hilali
 }
 
 /* Zoekformulier */
+
 .search-form {
     display: flex;
     justify-content: center;
@@ -142,20 +182,31 @@ Auteur: Fatima El Hilali
     .filter-nav ul {
         display: none;
     }
-
-    .filter-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.5rem;
-        height: 2.5rem;
-        border: 0.0625rem solid var(--primary-color);
-        border-radius: 0.3125rem;
-        cursor: pointer;
-        margin: auto;
-    }
 }
 
+  
+  /* Fallback voor oudere browsers die geen flex ondersteunen */
+  .filter-button {
+    display: block; /* Gebruik een block-weergave voor oudere browsers */
+  }
+
+
+/* Flexbox voor browsers die het wel ondersteunen */
+@supports (display: flex) {
+    .filter-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 0.0625rem solid var(--primary-color);
+      border-radius: 0.3125rem;
+      cursor: pointer;
+      margin: auto;
+    }
+  }
+
+  
 @media (min-width: 1024px) {
 .filter-nav ul {
     list-style: none;

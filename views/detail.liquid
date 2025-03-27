@@ -19,17 +19,14 @@ ChatGPT: Voor het bevestigen van mijn begrip van de bronnen.-->
     <!-- Navigatie bovenaan met terugknop en taalkeuze -->
     <nav>
       <!-- Terug naar homepage -->
-      <a href="/" title="Terug naar de homepagina">
-        <button type="button" class="back-button">
-          ← BACK
-        </button>
-      </a>
+      <a href="/"class="back-button" title="Terug naar de homepagina">← BACK</a>
+
 
 
       <!-- Taalkeuze dropdown -->
       <div class="language-switch">
         <label for="language-select" class="visually-hidden">Taalkeuze</label>
-        <select id="language-select" "Kies een taal">
+        <select id="language-select">
           <option value="en">🇬🇧 English</option>
           <option value="ar">🇸🇦 العربية</option>
         </select>
@@ -38,9 +35,7 @@ ChatGPT: Voor het bevestigen van mijn begrip van de bronnen.-->
 
     <!-- Afbeelding van het artwork -->
     <article class="object-detail">
-      <img
-        class="detail-artwork-image"
-        src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}"
+      <img class="detail-artwork-image"src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}"
         alt="Afbeelding van het artwork: {{ artwork.title }}">
     </article>
 
@@ -56,20 +51,13 @@ ChatGPT: Voor het bevestigen van mijn begrip van de bronnen.-->
           </h1>
 
           <!-- Titel Arabisch (alleen zichtbaar bij selectie) -->
-          <h1
-            id="artwork-title-ar"
-            class="artwork-title hidden"
-            dir="rtl">
+          <h1 id="artwork-title-ar" class="artwork-title hidden" dir="rtl">
             {{ artwork.titleAR | escape }}
           </h1>
 
           <!-- Museuminformatie -->
           <div class="museum-header">
-            <img
-              src="/assets/museum-icon.png"
-              alt="Logo van Museum of Islamic Art"
-              width="40"
-              height="40">
+            <img src="/assets/museum-icon.png" alt="Logo van Museum of Islamic Art">
             <p>Museum of Islamic Art</p>
           </div>
         </header>
@@ -80,10 +68,7 @@ ChatGPT: Voor het bevestigen van mijn begrip van de bronnen.-->
         </p>
 
         <!-- Arabische beschrijving, met fallback als tekst ontbreekt -->
-        <p
-          class="dropcap description ar hidden"
-          id="artwork-description-ar"
-          dir="rtl">
+        <p class="dropcap description ar hidden" id="artwork-description-ar" dir="rtl">
           {{ artwork.summaryAR | default: "لا يوجد وصف باللغة العربية." | escape | newline_to_br }}
         </p>
       </section>
@@ -91,16 +76,17 @@ ChatGPT: Voor het bevestigen van mijn begrip van de bronnen.-->
       <!-- beschrijving zoals titel en slug -->
       <aside class="info-right">
         <section class="artwork-details">
+
           <h2 id="artwork-metadata" class="visually-hidden">Details over het werk</h2>
-          <p>
-            <strong>Titel:</strong>
+          <p> <strong>Titel:</strong>
             {{ artwork.title }}
           </p>
+
           {% if artwork.slug %}
-            <p>
-              <strong>Slug:</strong>
+            <p> <strong>Slug:</strong>
               {{ artwork.slug }}
             </p>
+
           {% endif %}
         </section>
       </aside>

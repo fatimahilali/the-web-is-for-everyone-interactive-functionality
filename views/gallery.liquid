@@ -4,11 +4,12 @@
   <!-- Verborgen H1  voor SEO en toegankelijkheid -->
   <h1 class="visually-hidden">Doorzoek de kunstcollectie</h1>
   
-  <form class="search-form" action="#">
+  <form class="search-form" method="get">
     <!-- Verborgen label voor toegankelijkheid -->
     <label for="search" class="visually-hidden">Zoek in de collecties</label>
     <div class="input-container">
-      <!-- Zoekveld -->
+      
+    <!-- Zoekveld -->
       <input type="text" id="search" name="search" class="input" placeholder="Search the collections...">
     
       <!-- Zoekknop met icoon en toegankelijkheidslabel -->
@@ -39,8 +40,6 @@
 
 
 
-
-
 <!-- Kunstgalerij -->
 <section class="art-gallery">
   <ul>
@@ -49,9 +48,7 @@
         <figure class="art-figure">
           <!-- Afbeelding van het kunstwerk -->
           <a href="/detail/{{ artwork.id }}">
-          <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" 
-               alt="{{ artwork.title }}" 
-               class="art-image">
+          <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}"  alt="{{ artwork.title }}" class="art-image">
         </a>
           
           <!-- Overlay met like- en admin-knoppen -->

@@ -2,21 +2,17 @@
 {% render 'partials/header.liquid' %}
 <!-- laad de css-->
 {% render 'partials/head.liquid' %}
-<!-- laad de css-->
-<header class="user-header">
 
-    <!-- Back Button in the Header -->
-    <div class="back-container">
-        <a href="/" class="back-btn">Back</a>
-    </div>
-  <img
-    src="assets/qatar4.jpg"
-    alt="Qatar Museum"
-    class="header-image">
+
+
+  <header class="user-header">
+  <!-- Back Button in the Header -->
+  <div class="back-container"> <a href="/" class="back-btn">Back</a> </div>
   <!-- Header-afbeelding van het Qatar Museum -->
+  <img src="assets/qatar4.jpg" alt="Qatar Museum" class="header-image">
 
-  <div class="animated-text">
-    <!-- Titel met geanimeerde letters -->
+  <!-- Titel met geanimeerde letters -->
+  <h1 class="animated-text">
     <span class="ch1">L</span>
     <span class="ch2">i</span>
     <span class="ch3">k</span>
@@ -25,58 +21,56 @@
     <span class="ch6">A</span>
     <span class="ch7">r</span>
     <span class="ch8">t</span>
-  </div>
+  </h1>
 </header>
 
-<main class="user-container">
-  <!-- Hoofdcontainer voor de gebruiker -->
+<!-- Hoofdcontainer voor de gebruiker -->
 
+<main class="user-container">
   <section class="user-profile">
     <!-- Gebruikersprofielsectie -->
     <div class="profile-header">
-      <img
-        src="assets/model.jpg"
-        alt="User Image"
-        class="profile-image">
-      <!-- Profielfoto van de gebruiker -->
-
+            <!-- Profielfoto van de gebruiker -->
+      <img src="assets/model.jpg" alt="Profielfoto van Hellen Anderson" class="profile-image">
       <div class="profile-info">
+         <!-- Naam en beschrijving van de gebruiker -->
         <h3>Hellen Anderson</h3>
-        <p class="profile-description">Art Curator at Heart<span class="hart"> ଘ ੈ♡‧₊˚</span></p>
-        <!-- Naam en beschrijving van de gebruiker -->
+        <p class="profile-description">Art Curator at Heart<span class="hart">  ଘ ੈ♡‧₊˚</span> </p>
       </div>
     </div>
-  </section><section class="artwork-gallery">
-    <h2 class="section-title">Gallery of Favorites</h2>
+    </section>
 
-    <div class="artwork-grid">
+    <section class="artwork-gallery">
+      <h2 class="section-title">Gallery of Favorites</h2>
+      <div class="artwork-grid">
         {% for artwork in liked_artworks %}
-        <article class="artwork-card">
 
-
+          <article class="artwork-card">
             <!-- Titel van het kunstwerk -->
             <h3 class="artwork-title">{{ artwork.title }}</h3>
-
-            <!-- Afbeelding van het kunstwerk -->
-            <figure class="image-container">
-                <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}" 
-                    alt="{{ artwork.title }}" class="artwork-image">
-                <div class="image-overlay"></div>
-            </figure>
+          <!-- Afbeelding van het kunstwerk -->
+          <figure class="image-container">
+            <img src="https://fdnd-agency.directus.app/assets/{{ artwork.image }}"alt="{{ artwork.title }}" class="artwork-image">
+           <div class="image-overlay"></div>
+        </figure>
 
             <!-- Like-knoppen onderaan -->
             <div class="comment-like">
-                <button class="like-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                        <path d="M21.081,6C23.752,6.031,26,8.766,26,12c0,5.106-6.47,10.969-10.001,13.593C12.466,22.974,6,17.12,6,12
-                        c0-3.234,2.248-5.969,4.918-6C13.586,6.175,13.926,6.801,16,8.879C18.069,6.806,18.418,6.173,21.081,6Z"
-                        fill="#f5356e"></path>
-                    </svg>
-                </button>
-                <span>{{ artwork.likes }}</span>
-            </div>
+              <form action="/like" method="POST">
+              <input type="hidden" name="artworkId" value="{{ artwork.id }}">
+              <button class="like-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                    <path d="M21.081,6C23.752,6.031,26,8.766,26,12c0,5.106-6.47,10.969-10.001,13.593C12.466,22.974,6,17.12,6,12
+                     c0-3.234,2.248-5.969,4.918-6C13.586,6.175,13.926,6.801,16,8.879C18.069,6.806,18.418,6.173,21.081,6Z" fill="#f5356e"></path>
+                </svg>
+              </button>
+            </form>
+
+            <span>{{ artwork.likes }}</span>
+          </div>
+
         </article>
-        {% endfor %}
+      {% endfor %}
     </div>
-</section>
+  </section>
 </main>

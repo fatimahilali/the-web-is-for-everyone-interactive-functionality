@@ -10,6 +10,7 @@
 
 
 
+
 // Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
 import express from 'express'
@@ -34,6 +35,7 @@ app.engine('liquid', engine.express());
 // Stel de map met Liquid templates in
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
+
 
 
 
@@ -64,6 +66,7 @@ app.get("/admin-dashboard", async (req, res) => {
       return res.render("admin-dashboard.liquid", { liked_artworks: [] });
     }
 
+
   
 
     // Haal de kunstwerken op en voeg het aantal likes toe
@@ -80,6 +83,9 @@ app.get("/admin-dashboard", async (req, res) => {
       })
     );
 
+
+
+
     // Render de admin-dashboard pagina met de kunstwerken en hun likes
     res.render("admin-dashboard.liquid", {
       liked_artworks: liked_artworks.filter(Boolean), // Verwijder null-waardes
@@ -89,6 +95,7 @@ app.get("/admin-dashboard", async (req, res) => {
     res.status(500).send("Er is een fout opgetreden bij het laden van de pagina.");
   }
 });
+
 
 
 
