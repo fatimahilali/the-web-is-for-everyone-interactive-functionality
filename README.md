@@ -43,9 +43,9 @@ De volledige gebruikersflow van de website â€” van homepage tot profielpagina â€
 Hierin laat ik met schetsen en visuals zien hoe de gebruiker navigeert, wat er gebeurt bij een like, en hoe de content wordt opgehaald en getoond.
 
 ### User Story 1  
-**Als bezoeker wil ik een afbeelding kunnen liken, zodat deze like op de detailpagina wordt opgeslagen.**
+**Als bezoeker wil ik een gallery kunnen liken, zodat deze like op de detailpagina wordt opgeslagen.**
 
-Bezoekers kunnen op de detailpagina van een afbeelding op de like-knop klikken. Deze like wordt via een POST-request opgeslagen in de database (Directus). Daarna wordt de gebruiker automatisch doorgestuurd naar de profielpagina (/admin-dashboard), waar het aantal likes zichtbaar is.
+Bezoekers kunnen op de detailpagina van een gallery op de like-knop klikken. Deze like wordt via een POST-request opgeslagen in de database (Directus). Daarna wordt de gebruiker automatisch doorgestuurd naar de profielpagina (/admin-dashboard), waar het aantal likes zichtbaar is.
 
 ---
 
