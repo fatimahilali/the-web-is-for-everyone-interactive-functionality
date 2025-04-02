@@ -42,6 +42,19 @@ Gebruikers kunnen een **galerij liken** door met de muis over de afbeelding te h
 De volledige gebruikersflow van de website — van homepage tot profielpagina — wordt stap voor stap uitgelegd in mijn [Designproces-issue (#4)](https://github.com/fatimahilali/the-web-is-for-everyone-interactive-functionality/issues/4).  
 Hierin laat ik met schetsen en visuals zien hoe de gebruiker navigeert, wat er gebeurt bij een like, en hoe de content wordt opgehaald en getoond.
 
+### User Story 1  
+**Als bezoeker wil ik een afbeelding kunnen liken, zodat deze like op de detailpagina wordt opgeslagen.**
+
+Bezoekers kunnen op de detailpagina van een afbeelding op de like-knop klikken. Deze like wordt via een POST-request opgeslagen in de database (Directus). Daarna wordt de gebruiker automatisch doorgestuurd naar de profielpagina (/admin-dashboard), waar het aantal likes zichtbaar is.
+
+---
+
+### User Story 2  
+**Als bezoeker wil ik de detailpagina in meerdere talen kunnen bekijken, zodat ik de informatie begrijp in mijn eigen taal.**
+
+Ik heb een dropdown toegevoegd waarmee gebruikers kunnen wisselen tussen Engels en Arabisch. Dit werkt via data uit de backend en dynamische taalwisseling met JavaScript.  
+De taalwisseling is nog niet opgezet volgens het principe van *progressive enhancement* — de functionaliteit werkt alleen als JavaScript is ingeschakeld.
+
 ---
 
 ## Kenmerken
@@ -144,15 +157,15 @@ http://localhost:8000
 ```
 Nu draait je project lokaal!
 
-## Bronnen
-https://stackoverflow.com/questions/59196117/toggle-language-between-divs
 
-https://shopify.github.io/liquid/filters/escahttps://shopify.github.io/liquid/filters/default/?utm_source=chatgpt.com
+### Bronnen
+- [Toggle language between divs – StackOverflow](https://stackoverflow.com/questions/59196117/toggle-language-between-divs)
+- [Liquid filters: escape – Shopify](https://shopify.github.io/liquid/filters/escape/)
+- [Liquid filters: default – Shopify](https://shopify.github.io/liquid/filters/default/)
+- [Change language URL with select option – StackOverflow](https://stackoverflow.com/questions/41746962/change-language-url-with-select-option)
+- [Liquid newline_to_br – LiquidJS](https://liquidjs.com/filters/newline_to_br.html)
+- [addEventListener change & option selection – StackOverflow](https://stackoverflow.com/questions/24875414/addeventlistener-change-and-option-selection)
 
-https://stackoverflow.com/questions/41746962/change-language-url-with-select-option
-https://liquidjs.com/filters/newline_to_br.html
-
-https://stackoverflow.com/questions/24875414/addeventlistener-change-and-option-selection
 
 
 ## Licentie
