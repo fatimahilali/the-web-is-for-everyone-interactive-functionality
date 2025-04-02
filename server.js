@@ -135,6 +135,12 @@ app.get('/detail/:id', async function (request, response) {
 });
 
 
+// 404-foutpagina : bron :  (backend opdracht)
+app.use((req, res) => {
+  return res.status(404).render('404.liquid',);
+});
+
+
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
 app.set('port', process.env.PORT || 8000)

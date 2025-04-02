@@ -455,3 +455,109 @@
   border: 0;
 }
 
+
+
+/* foutmelding-stijl  */
+.cute-error {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin: 2rem 1rem;
+  background: #fff5f7;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  font-family: Arial, sans-serif;
+  gap: 2rem;
+}
+
+/* === Desktop Styles === */
+@media (min-width: 1024px) {
+  .cute-error {
+    margin: 4rem auto;
+    margin-left: 8%;
+    margin-top: 18%;
+  }
+}
+
+
+/*  foutmelding text stijl   */
+.cute-error .error-text,
+.cute-error .error-image {
+  flex: 1 1 100%;
+}
+
+/* === Desktop Styles === */
+@media (min-width: 1024px) {
+  .cute-error .error-text,
+  .cute-error .error-image {
+    flex: 1 1 300px;
+  }
+}
+
+/*  foutmelding h1 text */
+.cute-error h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* === Desktop Styles === */
+@media (min-width: 1024px) {
+  .cute-error h1 {
+    font-size: 2rem;
+  }
+}
+
+/* foutmelding paragraaf  */
+.cute-error p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+/* de go back button */
+.cute-error .back-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #EC3C8A;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 34rem;
+  margin-left: 3rem;
+}
+
+/* === Desktop Styles === */
+@media (min-width: 1024px) {
+  .cute-error .back-button {
+    margin-top: 30rem;
+    margin-left: 0.5rem;
+  }
+}
+
+/* hover color   */
+.cute-error .back-button:hover {
+  background: #78AAFA;
+}
+
+/*  Mona lisa image   */
+.cute-error img {
+  max-width: 70%;
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+
+
+/* === Desktop Styles === */
+@media (min-width: 1024px) {
+  .cute-error img {
+    max-width: 60%;
+    margin-top: 5%;
+  }
+}
+
+
+
+
