@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * Kunstgalerij Fade-in Effect
      * Laat alle kunstwerken vloeiend verschijnen met een kleine schaalverandering.
      */
+    
     gsap.fromTo(
         ".art-gallery .art-item",
         { 

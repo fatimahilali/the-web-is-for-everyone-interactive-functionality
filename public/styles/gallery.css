@@ -26,8 +26,6 @@ Auteur: Fatima El Hilali
     @media (min-width: 1200px) { .art-gallery { column-count: 6; } }
 
 
-
-
  /* Fallback voor oudere browsers die geen column-count ondersteunen */
   .art-gallery {
     display: block; /* Gebruik een enkele kolom voor oudere browsers */
@@ -343,7 +341,10 @@ Auteur: Fatima El Hilali
     transform: translateY(0);
 }
 
-/* Stijl van de knoppen */
+
+
+
+/* Algemene stijl voor like en admin knoppen */
 .like-btn, .admin-btn {
     background: transparent;
     border: none;
@@ -354,32 +355,50 @@ Auteur: Fatima El Hilali
     width: 2.5rem; 
     height: 2.5rem;
     transition: transform 0.2s ease-in-out;
-}
-
-/* Hover effect op knoppen */
-.like-btn:hover, .admin-btn:hover {
+  }
+  
+  /* Hover effect op knoppen */
+  .like-btn:hover, .admin-btn:hover {
     transform: scale(1.1);
-}
-
-/* SVG icons zonder kleur en zonder achtergrond */
-.like-btn svg, .admin-btn svg {
+  }
+  
+  /* SVG icons standaard styling */
+  .like-btn svg, .admin-btn svg {
     width: 1.375rem; 
     height: 1.375rem; 
-    fill: var(--background-color);
-    transition: transform 0.2s ease-in-out;
-}
-
-/* Hover animatie op SVG icons */
-.like-btn:hover svg, .admin-btn:hover svg {
+    fill: var(--background-color); 
+    transition: fill 0.3s ease, transform 0.2s ease-in-out;
+  }
+  
+  /* Hover effect op SVG icons */
+  .like-btn:hover svg, .admin-btn:hover svg {
     transform: scale(1.05);
-}
-
-/* Geen blur-effect op de afbeelding */
-.art-figure .art-image {
+  }
+  
+  /* Afbeelding animatie bij hover */
+  .art-figure .art-image {
     transition: transform 0.2s ease-in-out;
-}
-
-.art-figure:hover .art-image {
+  }
+  
+  .art-figure:hover .art-image {
     transform: scale(1.02);
-}
+  }
+  
+  /* Loading: pulse animatie */
+  .like-btn.loading svg {
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  
+  
+  /*  Success: hartje blijft blauw */
+  .like-btn.success svg {
+    fill: #1E90FF; 
+  }
+  
 
+  

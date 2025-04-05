@@ -16,7 +16,7 @@ De instructie vind je in: [INSTRUCTIONS.md](https://github.com/fdnd-task/the-web
 
 Voor het Qatar Museum heb ik een homepagina ontworpen waarop verschillende galerijen worden weergegeven. Bij het klikken op een galerij kom je op een detailpagina met meer informatie.
 De informatie is beschikbaar in zowel het Engels als Arabisch. Voor sommige galerijen wordt de informatie direct uit de backend geladen.
-Gebruikers kunnen een galerij liken door met de muis over de afbeelding te gaan en op het duimpje te klikken — deze wordt dan opgeslagen op hun profielpagina.
+Gebruikers kunnen een galerij liken door met de muis over de afbeelding te gaan en op het duimpje te klikken — deze wordt dan opgeslagen op hun profielpagina. Ik heb ook een 404-foutpagina toegevoegd. Wanneer een gebruiker naar een niet-bestaande pagina navigeert, krijgt hij of zij een duidelijke foutmelding te zien.
 
 ## Live website 
 
@@ -24,9 +24,12 @@ Gebruikers kunnen een galerij liken door met de muis over de afbeelding te gaan 
 
 ## Screenshots van de website
 
-  <img src="public/assets/home.png" alt="Home screenshot" width="300" style="margin-right: 10px;" />
-  <img src="public/assets/detail.png" alt="Detail screenshot" width="300" style="margin-right: 10px;" />
+
+  <img src="public/assets/home.png" alt="Home screenshot" width="300" />
+  <img src="public/assets/detail.png" alt="Detail screenshot" width="300" />
   <img src="public/assets/profile.png" alt="Profile screenshot" width="300" />
+  <img src="public/assets/deta.png" alt="Detail screenshot" width="300" />
+  <img src="public/assets/404.png" alt="404 screenshot" width="300" />
 
 
 

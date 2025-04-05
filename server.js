@@ -10,7 +10,6 @@
 
 
 
-
 // Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
 import express from 'express'
@@ -99,6 +98,7 @@ app.get("/admin-dashboard", async (req, res) => {
 
 
 
+
 // Route voor het liken van een kunstwerk
 app.post("/like", async (req, res) => {
   // Stuur een POST-verzoek naar de Directus API om de like op te slaan
@@ -109,12 +109,18 @@ app.post("/like", async (req, res) => {
           text: "like",          // De inhoud van het bericht is "like"
           for: req.body.artworkId, // ID van het gelikete kunstwerk
           from: "1"                 // Fake user-ID omdat er geen inlog is
-      }),
+    }),
   });
-  //  Stuur de gebruiker terug naar de vorige pagina na het liken
-  res.redirect('/admin-dashboard');
-});
 
+    // Haal opnieuw alle kunstwerken op van de API
+  const apiResponse = await fetch("https://fdnd-agency.directus.app/items/fabrique_art_objects");
+    // Zet de response om naar JSON
+  const apiResponseJSON = await apiResponse.json();
+    // Render opnieuw de homepage met de bijgewerkte kunstwerken
+  res.render("index.liquid", {
+    artworks: apiResponseJSON.data
+  });
+});
 
 
 

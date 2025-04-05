@@ -8,6 +8,7 @@
  * @sprint 9
  */
 
+
 document.addEventListener("DOMContentLoaded", () => {
     // Activeert de ScrollTrigger-plugin van GSAP
     gsap.registerPlugin(ScrollTrigger);
