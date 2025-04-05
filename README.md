@@ -98,16 +98,6 @@ Data (titel, afbeelding, beschrijving) is beschikbaar en wordt correct getoond.
 <p>{{ artwork.summary }}</p>
 ```
 
-### Empty State 
-Als er geen beschrijving aanwezig is, wordt een fallbacktekst weergegeven.
-
-### Screenshot
-
-<img src="public/assets/empty.png" alt="Empty state screenshot" width="500" />
-
-```liquid
-<p>{{ artwork.summary | default: "Fallback tekst..." }}</p>
-```
 
 ### Error State
 Bijvoorbeeld: als de galerij niet bestaat, krijg je een foutmelding te zien
